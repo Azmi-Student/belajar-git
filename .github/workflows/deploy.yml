@@ -18,7 +18,7 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: 64000
-                script: |
+        script: |
           if [ ! -d "/var/www/html/cicd" ]; then
             mkdir -p /var/www/html/cicd
           fi
@@ -35,4 +35,3 @@ jobs:
 
           chmod -R 755 /var/www/html/cicd/2305071
           exit 0
-
