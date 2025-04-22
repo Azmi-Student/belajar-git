@@ -18,21 +18,21 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: 64000
-        script: |
-            if [ ! -d "/var/www/html/cicd" ]; then
-              mkdir -p /var/www/html/cicd
-            fi
+                script: |
+          if [ ! -d "/var/www/html/cicd" ]; then
+            mkdir -p /var/www/html/cicd
+          fi
 
-            if [ ! -d "/var/www/html/cicd/2305071" ]; then
-              mkdir -p /var/www/html/cicd/2305071
-            fi
-
+          if [ ! -d "/var/www/html/cicd/2305071" ]; then
+            mkdir -p /var/www/html/cicd/2305071
             cd /var/www/html/cicd/2305071
+            git clone https://github.com/Azmi-Student/belajar-git.git .
+          else
+            cd /var/www/html/cicd/2305071
+            git fetch origin master
+            git reset --hard origin/master
+          fi
 
-            if [ ! -d ".git" ]; then
-              git clone https://github.com/Azmi-Student/belajar-git.git .
-            else
-              git pull origin master
-            fi
+          chmod -R 755 /var/www/html/cicd/2305071
+          exit 0
 
-            chmod -R 755 /var/www/html/cicd
